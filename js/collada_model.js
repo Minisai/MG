@@ -53,11 +53,8 @@ ColladaModel.prototype.handleLoaded = function(data)
 
 ColladaModel.prototype.animate  = function(animating)
 {
-	var newpos;
-	newpos = this.object3D.position.x + 20;	
-	
-	new TWEEN.Tween(this.object3D.position).to( {x: newpos}, 20000).easing( TWEEN.Easing.Quadratic.EaseOut).start();
-	new TWEEN.Tween( this.object3D.rotation ).to( {  z:  this.object3D.rotation.z + Math.PI}, 20000 ).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 20}, 10000).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	// new TWEEN.Tween( this.object3D.rotation ).to( {z:  this.object3D.rotation.x + Math.PI}, 10000 ).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 
 ColladaModel.prototype.update = function()

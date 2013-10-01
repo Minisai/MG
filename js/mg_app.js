@@ -13,8 +13,7 @@ MGApp.prototype.init = function(param)
 	// Call superclass init code to set up scene, renderer, default camera
 	Sim.App.prototype.init.call(this, param);
 	
-	this.camera.position.set(0, 0, 60);
-	this.camera.rotation.y = -Math.PI/6
+	this.camera.position.set(0, 0, 20);
 	
     // Create a headlight to show off theodel
 	this.headlight = new THREE.DirectionalLight( 0xffffff, 1);
@@ -28,6 +27,11 @@ MGApp.prototype.init = function(param)
 	this.ufo.object3D.rotation.x = -Math.PI/2;
 	this.ufo.object3D.position.set(-13, 0, 0)	
 	this.addModel(this.ufo);
+
+	// Add sea
+	this.sea = new Sea();
+    this.sea.init();
+    this.addObject(this.sea);
 
 	var amb = new THREE.AmbientLight( 0xffffff );
 	this.scene.add(amb);
