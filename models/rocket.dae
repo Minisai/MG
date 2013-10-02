@@ -11,13 +11,13 @@
    </asset>
    <library_images>
       <image id="Material2noCulling-image" name="Material2noCulling-image">
-         <init_from>../images/Material2noCulling.jpg</init_from>
+         <init_from>./images/Material2noCulling.jpg</init_from>
       </image>
       <image id="Material5noCulling-image" name="Material5noCulling-image">
-         <init_from>../images/Material5noCulling.jpg</init_from>
+         <init_from>./images/Material5noCulling.jpg</init_from>
       </image>
       <image id="Material5_1-image" name="Material5_1-image">
-         <init_from>../images/Material5_1.jpg</init_from>
+         <init_from>./images/Material5_1.jpg</init_from>
       </image>
    </library_images>
    <library_materials>

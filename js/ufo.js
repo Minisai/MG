@@ -54,7 +54,7 @@ Ufo.prototype.animate  = function(animating)
 {
 	this.object3D.position.set(-25, 0, 0);	
 	this.object3D.rotation.x = -Math.PI/2;
-	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 40}, 9000).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 25}, 5400).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 	// new TWEEN.Tween( this.object3D.rotation ).to( {z:  this.object3D.rotation.x + Math.PI}, 10000 ).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 

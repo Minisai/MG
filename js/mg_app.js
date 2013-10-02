@@ -30,6 +30,11 @@ MGApp.prototype.init = function(param)
     this.submarine.init({ url: "./models/submarine.dae", scale: 0.0001});		
 	this.addModel(this.submarine);
 
+	// Add rocket	
+	this.rocket = new Rocket();
+    this.rocket.init({ url: "./models/rocket.dae", scale: 0.0001});		
+	this.addModel(this.rocket);
+
 	// Add sea
 	this.sea = new Sea();
     this.sea.init();
