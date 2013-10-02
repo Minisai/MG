@@ -21,12 +21,14 @@ MGApp.prototype.init = function(param)
 	this.scene.add(this.headlight);	
 
 	// Add UFO
-	this.ufo = new ColladaModel();
-    this.ufo.init({ url: "./models/ufo.dae", scale: 0.001});		
-
-	this.ufo.object3D.rotation.x = -Math.PI/2;
-	this.ufo.object3D.position.set(-13, 0, 0)	
+	this.ufo = new Ufo();
+    this.ufo.init({ url: "./models/ufo.dae", scale: 0.001});
 	this.addModel(this.ufo);
+
+	// Add submarine	
+	this.submarine = new Submarine();
+    this.submarine.init({ url: "./models/submarine.dae", scale: 0.0001});		
+	this.addModel(this.submarine);
 
 	// Add sea
 	this.sea = new Sea();
