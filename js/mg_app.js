@@ -30,15 +30,31 @@ MGApp.prototype.init = function(param)
     this.submarine.init({ url: "./models/submarine.dae", scale: 0.0001});		
 	this.addModel(this.submarine);
 
-	// Add rocket	
-	this.rocket = new Rocket();
-    this.rocket.init({ url: "./models/rocket.dae", scale: 0.0001});		
-	this.addModel(this.rocket);
+	// Add rocket		
+	var _this = this;
+	setTimeout(function() {
+		_this.rocket = new Rocket();
+    	_this.rocket.init({ url: "./models/rocket.dae", scale: 0.0001});		
+		_this.addModel(_this.rocket); }, 2200);
 
 	// Add sea
 	this.sea = new Sea();
     this.sea.init();
     this.addObject(this.sea);
+
+    // Add explosion
+    this.explosion = new Explosion();
+    this.explosion.init({ url: "./models/explosion.dae", scale: 0.001});
+
+    // Make explosion
+	setTimeout(function() { 
+		_this.removeModel(_this.rocket);
+		_this.removeModel(_this.ufo);
+    	_this.addObject(_this.explosion);
+	}, 4200);
+	setTimeout(function() { 
+    	_this.removeModel(_this.explosion);
+	}, 5500);
 
 	var amb = new THREE.AmbientLight( 0xffffff );
 	this.scene.add(amb);

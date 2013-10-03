@@ -1,4 +1,3 @@
-//Custom COLLADA model class
 Submarine = function()
 {
 	Sim.Object.call(this);
@@ -56,29 +55,6 @@ Submarine.prototype.animate  = function(animating)
 	this.object3D.rotation.y = -2*Math.PI/2;
 	this.object3D.position.set(-45, -5, 0);	
 	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 80}, 10000).easing( TWEEN.Easing.Quadratic.EaseOut).start();
-}
-
-Submarine.prototype.update = function()
-{
-	Sim.Object.prototype.update.call(this);
-	
-	if (!this.animating)
-		return;
-	
-	if ( this.skin )
-	{
-    	var now = Date.now();
-    	var deltat = (now - this.startTime) / 1000;
-    	var fract = deltat - Math.floor(deltat);
-    	this.frame = fract * this.frameRate;
-		
-		for ( var i = 0; i < this.skin.morphTargetInfluences.length; i++ )
-		{
-			this.skin.morphTargetInfluences[ i ] = 0;
-		}
-
-		this.skin.morphTargetInfluences[ Math.floor( this.frame ) ] = 1;
-	}
 }
 
 Submarine.default_frame_rate = 30;

@@ -1,11 +1,11 @@
-Rocket = function()
+Explosion = function()
 {
 	Sim.Object.call(this);
 }
 
-Rocket.prototype = new Sim.Object();
+Explosion.prototype = new Sim.Object();
 
-Rocket.prototype.init = function(param)
+Explosion.prototype.init = function(param)
 {
 	var group = new THREE.Object3D;
 
@@ -29,12 +29,12 @@ Rocket.prototype.init = function(param)
     this.skin = null;
 	this.frame = 0;
 	this.animating = false;
-    this.frameRate = Rocket.default_frame_rate;
+    this.frameRate = Explosion.default_frame_rate;
     this.animate(true);
 }
 
 
-Rocket.prototype.handleLoaded = function(data)
+Explosion.prototype.handleLoaded = function(data)
 {
 	if (data)
 	{
@@ -49,15 +49,17 @@ Rocket.prototype.handleLoaded = function(data)
 	}	
 }
 
-Rocket.prototype.animate  = function(animating)
+Explosion.prototype.animate  = function(animating)
 {
-	this.object3D.rotation.z = 2*Math.PI/3;
-	this.object3D.position.set(-7, -3, 0);	
-	new TWEEN.Tween(this.object3D.position).to( {
-		y: this.object3D.position.y + 6,
-		x: this.object3D.position.x + 9
-	}, 2300).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	this.object3D.rotation.y = -Math.PI/2;
+	this.object3D.position.set(2, 2, 0);	
+	this.object3D.scale.set(0.001, 0.001, 0.001);	
+	new TWEEN.Tween(this.object3D.scale).to( {
+		y: this.object3D.scale.y + 2,
+		x: this.object3D.scale.x + 2,
+		z: this.object3D.scale.z + 2
+	}, 2300).delay(4200).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 
-Rocket.default_frame_rate = 30;
+Explosion.default_frame_rate = 30;
 
