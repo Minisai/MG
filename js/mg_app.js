@@ -13,7 +13,12 @@ MGApp.prototype.init = function(param)
 	// Call superclass init code to set up scene, renderer, default camera
 	Sim.App.prototype.init.call(this, param);
 	
+	//2D 
 	this.camera.position.set(0, 0, 20);
+
+	//3D
+	// this.camera.position.set(-150, 20, 0);
+	// this.camera.rotation.set(0, -Math.PI/2, 0);
 	
     // Create a headlight to show off theodel
 	this.headlight = new THREE.DirectionalLight( 0xffffff, 1);
