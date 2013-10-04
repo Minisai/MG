@@ -30,7 +30,6 @@ Submarine.prototype.init = function(param)
 	this.frame = 0;
 	this.animating = false;
     this.frameRate = Submarine.default_frame_rate;
-    this.animate(true);
 }
 
 

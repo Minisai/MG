@@ -30,7 +30,6 @@ Rocket.prototype.init = function(param)
 	this.frame = 0;
 	this.animating = false;
     this.frameRate = Rocket.default_frame_rate;
-    this.animate(true);
 }
 
 

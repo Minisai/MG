@@ -25,44 +25,57 @@ MGApp.prototype.init = function(param)
 	this.headlight.position.set(0, 0, 1);
 	this.scene.add(this.headlight);	
 
-	// Add UFO
-	this.ufo = new Ufo();
-    this.ufo.init({ url: "./models/ufo.dae", scale: 0.001});
-	this.addModel(this.ufo);
+	var amb = new THREE.AmbientLight( 0xffffff );
+	this.scene.add(amb);
 
-	// Add submarine	
-	this.submarine = new Submarine();
-    this.submarine.init({ url: "./models/submarine.dae", scale: 0.0001});		
-	this.addModel(this.submarine);
-
-	// Add rocket		
+	this.initModels()
 	var _this = this;
-	setTimeout(function() {
-		_this.rocket = new Rocket();
-    	_this.rocket.init({ url: "./models/rocket.dae", scale: 0.0001});		
-		_this.addModel(_this.rocket); }, 2200);
 
-	// Add sea
-	this.sea = new Sea();
-    this.sea.init();
-    this.addObject(this.sea);
+	_this.addObject(_this.sea)	
+	// animate submarine and ufo
+	setTimeout(function(){
+		_this.addObject(_this.ufo)
+		_this.addObject(_this.submarine)
+		_this.ufo.animate(true)
+		_this.submarine.animate(true)
+	}, 1000)
 
-    // Add explosion
-    this.explosion = new Explosion();
-    this.explosion.init({ url: "./models/explosion.dae", scale: 0.001});
+	// Send rocket
+	setTimeout(function() {	
+		_this.addObject(_this.rocket); 		
+		_this.rocket.animate(true)
+	}, 3200);
+
 
     // Make explosion
 	setTimeout(function() { 
 		_this.removeModel(_this.rocket);
 		_this.removeModel(_this.ufo);
     	_this.addObject(_this.explosion);
-	}, 4200);
+		_this.explosion.animate(true)
+	}, 5200);
+
 	setTimeout(function() { 
     	_this.removeModel(_this.explosion);
-	}, 5500);
+	}, 6500);
+}
 
-	var amb = new THREE.AmbientLight( 0xffffff );
-	this.scene.add(amb);
+MGApp.prototype.initModels = function()
+{    
+	this.sea = new Sea();
+    this.sea.init();
+
+	this.ufo = new Ufo();
+    this.ufo.init({ url: "./models/ufo.dae", scale: 0.001});
+
+	this.submarine = new Submarine();
+    this.submarine.init({ url: "./models/submarine.dae", scale: 0.0001});		
+
+	this.rocket = new Rocket();
+	this.rocket.init({ url: "./models/rocket.dae", scale: 0.0001});	
+
+    this.explosion = new Explosion();
+    this.explosion.init({ url: "./models/explosion.dae", scale: 0.001});
 }
 
 MGApp.prototype.addModel = function(model)

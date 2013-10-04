@@ -30,7 +30,6 @@ Explosion.prototype.init = function(param)
 	this.frame = 0;
 	this.animating = false;
     this.frameRate = Explosion.default_frame_rate;
-    this.animate(true);
 }
 
 
@@ -58,7 +57,7 @@ Explosion.prototype.animate  = function(animating)
 		y: this.object3D.scale.y + 2,
 		x: this.object3D.scale.x + 2,
 		z: this.object3D.scale.z + 2
-	}, 2300).delay(4200).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	}, 2300).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 
 Explosion.default_frame_rate = 30;
