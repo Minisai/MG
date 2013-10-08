@@ -53,7 +53,7 @@ Submarine.prototype.animate  = function(animating)
 	this.object3D.rotation.x = Math.PI/2;
 	this.object3D.rotation.y = -2*Math.PI/2;
 	this.object3D.position.set(-45, -5, 0);	
-	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 80}, 10000).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 80}, 7000).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 
 Submarine.default_frame_rate = 30;
