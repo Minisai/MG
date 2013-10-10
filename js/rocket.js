@@ -40,6 +40,10 @@ Rocket.prototype.handleLoaded = function(data)
 	    var model = data.scene;
 	    // This model in cm, we're working in meters, scale down
 	    model.scale.copy(this.scale);
+		model.traverse(function ( child ) {
+		    child.castShadow = true;
+		    child.receiveShadow = true;
+		} );
 		
 	    this.object3D.add(model);
 	    

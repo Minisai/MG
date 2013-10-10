@@ -7,24 +7,35 @@ Sky.prototype = new Sim.Object();
 
 Sky.prototype.init = function()
 {
-	var geometry = new THREE.CubeGeometry(.1, 20, 66);
+	var group = new THREE.Object3D;
+
 	var map = THREE.ImageUtils.loadTexture('models/images/sky.png');
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
-    map.repeat.set(3,3);
-	var material = new THREE.MeshLambertMaterial({ map : map});
-	var mesh = new THREE.Mesh(geometry, material);
-	mesh.position.set(-330, 10, 0);
-	this.addChild(mesh);
+    map.repeat.set(1,1);
 
-	var geometry = new THREE.CubeGeometry(.1, 20, 66);
-	var material = new THREE.MeshLambertMaterial({ map : map});
+	var geometry = new THREE.CubeGeometry(.1, 1000, 1000);
+	var material = new THREE.MeshBasicMaterial({ map : map});
 	var mesh = new THREE.Mesh(geometry, material);
-	mesh.position.set(330, 10, 0);
-	this.addChild(mesh);
+	mesh.position.set(-500, 500, 0);
+	group.add(mesh);
 
-	var geometry = new THREE.CubeGeometry(66, 20, .1);
-	var material = new THREE.MeshLambertMaterial({ map : map});
+	var geometry = new THREE.CubeGeometry(.1, 1000, 1000);
+	var material = new THREE.MeshBasicMaterial({ map : map});
 	var mesh = new THREE.Mesh(geometry, material);
-	mesh.position.set(0, 10, -330);
-	this.addChild(mesh);   
+	mesh.position.set(500, 500, 0);
+	group.add(mesh);
+
+	var geometry = new THREE.CubeGeometry(1000, 1000, .1);
+	var material = new THREE.MeshBasicMaterial({ map : map});
+	var mesh = new THREE.Mesh(geometry, material);
+	mesh.position.set(0, 500, 500);
+	group.add(mesh); 
+
+	var geometry = new THREE.CubeGeometry(1000, 1000, .1);
+	var material = new THREE.MeshBasicMaterial({ map : map});
+	var mesh = new THREE.Mesh(geometry, material);
+	mesh.position.set(0, 500, -500);
+	group.add(mesh); 
+    
+    this.setObject3D(group);
 }

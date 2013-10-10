@@ -13,22 +13,44 @@ MGApp.prototype.init = function(param)
 	// Call superclass init code to set up scene, renderer, default camera
 	Sim.App.prototype.init.call(this, param);
 	
+	this.renderer.shadowMapEnabled	= true;
+	this.renderer.shadowMapSoft		= true;
 	//2D 
 	// this.camera.position.set(0, 0, 20);
 
 	//3D
-	this.camera.position.set(-100, 10, 0);
+	this.camera.position.set(-50, 10, 0);
 	// this.camera.rotation.set(0, -Math.PI/2, 0);
 	
-    // Create a headlight to show off theodel
+	var sunlight = new THREE.DirectionalLight();
+    sunlight.position.set(250, 250, 0);
+    sunlight.intensity = 1;
+    sunlight.castShadow = true;
+    sunlight.shadowCameraNear = 250;
+    sunlight.shadowCameraFar = 450;
+    sunlight.shadowCameraLeft = -200;
+    sunlight.shadowCameraRight = 200;
+    sunlight.shadowCameraTop = 200;
+    sunlight.shadowCameraBottom = -200;
+    sunlight.shadowMapWidth = sunlight.shadowMapHeight = 2048;
+	this.scene.add(sunlight);	
+
 	this.headlight = new THREE.DirectionalLight( 0xffffff, 1);
-	this.headlight.position.set(0, 0, 1);
+	this.headlight.position.set(2, -200, 0).normalize();
+	this.headlight.shadowCameraRight     =  100;
+	this.headlight.shadowCameraLeft     = -5;
+	this.headlight.shadowCameraTop      =  50;
+	this.headlight.shadowCameraBottom   = -5;
+
+	// For debugging
+	// this.headlight.shadowCameraVisible = true;	
+
 	this.scene.add(this.headlight);	
 
 	var amb = new THREE.AmbientLight( 0xffffff );
 	this.scene.add(amb);
 
-	this.initModels();
+	this.initModels();	
 	this.initAnimation();
 
 	this.createCameraControls();
@@ -39,8 +61,8 @@ MGApp.prototype.initModels = function()
 	this.sea = new Sea();
     this.sea.init();
 
-	// this.sky = new Sky();
- //    this.sky.init();
+	this.sky = new Sky();
+    this.sky.init();
 
 	this.ufo = new Ufo();
     this.ufo.init({ url: "./models/ufo.dae", scale: 0.001});
@@ -60,19 +82,21 @@ MGApp.prototype.initAnimation = function()
 	var _this = this;
 
 	_this.addObject(_this.sea)	
-	// animate submarine and ufo
+	_this.addObject(_this.sky)	
+	// // animate submarine and ufo
 	setTimeout(function(){
 		_this.addObject(_this.ufo)
+		_this.ufo.object3D.rotation.x = -Math.PI/2;
 		_this.addObject(_this.submarine)
 		_this.ufo.animate(true)
 		_this.submarine.animate(true)
-	}, 1000)
+	}, 10000)
 
 	// Send rocket
 	setTimeout(function() {	
 		_this.addObject(_this.rocket); 		
 		_this.rocket.animate(true)
-	}, 3200);
+	}, 12200);
 
 
     // Make explosion
@@ -81,11 +105,11 @@ MGApp.prototype.initAnimation = function()
 		_this.removeModel(_this.ufo);
     	_this.addObject(_this.explosion);
 		_this.explosion.animate(true)
-	}, 5200);
+	}, 14200);
 
 	setTimeout(function() { 
     	_this.removeModel(_this.explosion);
-	}, 6500);
+	}, 15500);
 }
 
 MGApp.prototype.addModel = function(model)

@@ -23,7 +23,7 @@ Ufo.prototype.init = function(param)
 	loader.load( url, function( data ) { 
 		that.handleLoaded(data) } );
 
-    // Tell the framework about our object
+	    // Tell the framework about our object
     this.setObject3D(group);
 
     // Init animation state
@@ -41,7 +41,10 @@ Ufo.prototype.handleLoaded = function(data)
 	    var model = data.scene;
 	    // This model in cm, we're working in meters, scale down
 	    model.scale.copy(this.scale);
-		
+		model.traverse(function ( child ) {
+		    child.castShadow = true;
+		    child.receiveShadow = true;
+		} );
 	    this.object3D.add(model);
 	    
 	    // Any skinning data? Save it away
