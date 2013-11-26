@@ -57,9 +57,9 @@ Rocket.prototype.animate  = function(animating)
 	this.object3D.rotation.z = 2*Math.PI/3;
 	this.object3D.position.set(-7, -3, 0);	
 	new TWEEN.Tween(this.object3D.position).to( {
-		y: this.object3D.position.y + 6,
-		x: this.object3D.position.x + 9
-	}, 2300).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+		y: this.object3D.position.y + 12,
+		x: this.object3D.position.x + 18
+	}, 6400).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 
 Rocket.default_frame_rate = 30;

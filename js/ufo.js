@@ -54,9 +54,9 @@ Ufo.prototype.handleLoaded = function(data)
 
 Ufo.prototype.animate  = function(animating)
 {
-	this.object3D.position.set(-25, 0, 4);	
+	this.object3D.position.set(0, 0, -25);	
 	this.object3D.rotation.x = -Math.PI/2;
-	new TWEEN.Tween(this.object3D.position).to( {x: this.object3D.position.x + 25}, 4500).easing( TWEEN.Easing.Quadratic.EaseOut).start();
+	new TWEEN.Tween(this.object3D.position).to( {z: this.object3D.position.z + 50}, 11500).easing( TWEEN.Easing.Quadratic.EaseOut).start();
 }
 
 Ufo.default_frame_rate = 50;
